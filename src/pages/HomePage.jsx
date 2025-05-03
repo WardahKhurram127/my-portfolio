@@ -4,7 +4,7 @@ import { FaInstagram, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 
 export default function HeroSection() {
   return (
-    <div className="bg-gray-900 2xl:ml-40 min-h-screen flex flex-col items-center justify-center text-white px-4">
+    <div className="bg-gray-900 2xl:ml-40 p-20 min-h-screen flex flex-col items-center justify-center text-white px-4">
 
       <div className="mb-6">
         <div className="  profile-container ">

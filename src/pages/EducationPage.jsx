@@ -22,7 +22,7 @@ const EducationPage = () => {
  
   
   return (
-    <div className="h-[100vh] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-40 min-h-screen flex flex-col items-center justify-center">
+    <div className="h-[100vh] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-40 p-20  min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">EDUCATION</h2>
       <hr className="border-red-500 w-36 mx-auto mb-8" />
 
