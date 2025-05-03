@@ -2,33 +2,36 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-
+import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import WebIcon from '@mui/icons-material/Web';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-
+import SettingsIcon from "@mui/icons-material/Settings";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CodeIcon from '@mui/icons-material/Code';
+import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
-import SchoolIcon from '@mui/icons-material/School';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
-
+import SelectActionCard from "./components./Cards";
+import LineChart from "./components./LineChart";
+import PieChart from "./components./PieChart";
+import AreaChart from "./components./AreaChart";
+import BarChart from "./components./BarChart";
 import { useState } from "react";
-
+import AboutPage from "./pages/AboutPage";
 const drawerWidth = 240;
 
-function Sidebar(props) {
+function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
@@ -52,7 +55,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "education")) {
+    } else if ((text = "about")) {
       setDisplay({
         home: false,
         about: true,
@@ -62,7 +65,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "achievement")) {
+    } else if ((text = "contact")) {
       setDisplay({
         home: false,
         about: false,
@@ -72,7 +75,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "projects")) {
+    } else if ((text = "settings")) {
       setDisplay({
         home: false,
         about: false,
@@ -82,7 +85,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "skills")) {
+    } else if ((text = "products")) {
       setDisplay({
         home: false,
         about: false,
@@ -92,7 +95,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "contact")) {
+    } else if ((text = "manualProducts")) {
       setDisplay({
         home: false,
         about: false,
@@ -102,7 +105,17 @@ function Sidebar(props) {
         manualProducts: true,
         categories: false,
       });
-    } 
+    } else if ((text = "categories")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: false,
+        settings: false,
+        products: false,
+        manualProducts: false,
+        categories: true,
+      });
+    }
   };
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -120,9 +133,9 @@ function Sidebar(props) {
   };
 
   const drawer = (
-    <div className="bg-[#111111] h-[100vh]">
+    <div>
       <Toolbar />
-      <Divider sx={{marginTop:"10px"}} />
+      <Divider />
       <List
         onClick={() => {
           handleDisplay("home");
@@ -130,8 +143,8 @@ function Sidebar(props) {
       >
         <Link to="/">
           <ListItem key={"0"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton>
+              <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <HomeIcon />
               </ListItemIcon>
@@ -143,92 +156,109 @@ function Sidebar(props) {
       {/* <Divider /> */}
       <List
         onClick={() => {
-          handleDisplay("education");
+          handleDisplay("about");
         }}
       >
-        <Link to="/education">
+        <Link to="/About">
           <ListItem key={"3"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton>
+              <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <SchoolIcon />
+                <InfoIcon />
               </ListItemIcon>
-              <ListItemText primary={"Education"} />
+              <ListItemText primary={"About"} />
             </ListItemButton>
           </ListItem>
         </Link>
       </List>
       <List
         onClick={() => {
-          handleDisplay("achievements");
+          handleDisplay("contact");
         }}
       >
-        <Link to="/achievements">
+        <Link to="/Contact">
           <ListItem key={"1"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton>
+              <ListItemIcon>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <EmojiEventsIcon />
+                <ContactsIcon />
               </ListItemIcon>
-              <ListItemText primary={"Achievements"} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      </List>
-      <List
-        onClick={() => {
-          handleDisplay("projects");
-        }}
-      >
-        <Link to="/projects">
-          <ListItem key={"2"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <WebIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Projects"} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      </List>
-      <Link to="/Skills">
-        <List
-          onClick={() => {
-            handleDisplay("skills");
-          }}
-        >
-          <ListItem key={"4"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <CodeIcon/>
-              </ListItemIcon>
-
-              <ListItemText primary={"Skills"} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Link>
-      <Link to="/contact">
-        <List
-          onClick={() => {
-            handleDisplay("contact");
-          }}
-        >
-          <ListItem key={"5"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <AccountCircleIcon />
-              </ListItemIcon>
-
               <ListItemText primary={"Contact"} />
             </ListItemButton>
           </ListItem>
+        </Link>
+      </List>
+      <List
+        onClick={() => {
+          handleDisplay("settings");
+        }}
+      >
+        <Link to="/Settings">
+          <ListItem key={"2"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Settings"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      <Link to="/Products">
+        <List
+          onClick={() => {
+            handleDisplay("products");
+          }}
+        >
+          <ListItem key={"4"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"Products"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Link>
-      
+      <Link to="/ManualProducts">
+        <List
+          onClick={() => {
+            handleDisplay("manualProducts");
+          }}
+        >
+          <ListItem key={"5"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"ManualProducts"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
+      <Link to="/Categories">
+        <List
+          onClick={() => {
+            handleDisplay("categories");
+          }}
+        >
+          <ListItem key={"6"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"Categories"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
     </div>
   );
 
@@ -247,7 +277,7 @@ function Sidebar(props) {
           zIndex: (theme) => theme.zIndex.drawer + 1, // Ensures AppBar is above the drawer
         }}
       >
-        <Toolbar sx={{backgroundColor:"#111111"}}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -257,20 +287,15 @@ function Sidebar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{display:"flex", justifyContent:"space-between", width:100+"%", padding:"20px"}}>
-          <Typography sx={{color:"#FF4D4D"}} variant="h6" noWrap component="div">
-            Wardah Khurram
+          <Typography variant="h6" noWrap component="div">
+            Dashboard
           </Typography>
-          <Link to="/contact">
-          <AccountCircleIcon sx={{fontSize:"35px", cursor:"pointer"}}/>
-          </Link>
-          </Box>
         </Toolbar>
       </AppBar>
 
       <Box
         component="nav"
-        sx={{ width: { lg: drawerWidth }, flexShrink: { lg: 0 } }}
+        sx={{ width: { lg: drawerWidth } }}
         aria-label="mailbox folders"
       >
         {/* flexShrink: { lg: 0 } */}
@@ -312,17 +337,31 @@ function Sidebar(props) {
         </Drawer>
       </Box>
 
+      {/* {display.home && (
+        <div className="flex flex-col gap-10 items-center px-10 mt-28">
+          <SelectActionCard />
+          <div className="flex xl:flex-row flex-col items-center gap-10 ">
+            <LineChart />
+            <PieChart />
+          </div>
+          <div className="flex xl:flex-row flex-col items-center gap-10">
+            <AreaChart />
+            <BarChart />
+          </div>
+        </div>
+      )}
+      {display.about&&<AboutPage/>} */}
       
     </Box>
   );
 }
 
-// ResponsiveDrawer.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * Remove this when copying and pasting into your project.
-//    */
-//   window: PropTypes.func,
-// };
+ResponsiveDrawer.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * Remove this when copying and pasting into your project.
+   */
+  window: PropTypes.func,
+};
 
-export default Sidebar;
+export default ResponsiveDrawer;

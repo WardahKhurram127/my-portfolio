@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       {/* Sidebar / Navigation Drawer */}
-      {/* <Sidebar /> */}
+      <Sidebar />
 
       {/* Routes for Page Navigation */}
       <Routes>
