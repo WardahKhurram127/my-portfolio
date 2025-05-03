@@ -62,7 +62,7 @@ function Sidebar(props) {
         manualProducts: false,
         categories: false,
       });
-    } else if ((text = "achievement")) {
+    } else if ((text = "achievements")) {
       setDisplay({
         home: false,
         about: false,
