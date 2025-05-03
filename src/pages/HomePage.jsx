@@ -10,7 +10,7 @@ export default function HeroSection() {
         <div className="  profile-container ">
           <img
             src="../../public/ppp.PNG" 
-            alt="Profile"
+            alt=""
             className="profile-img transition-transform duration-300 ease-in-out transform hover:scale-105 hover:rotate-12"
           />
         </div>
