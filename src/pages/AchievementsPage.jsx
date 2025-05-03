@@ -30,7 +30,7 @@ const AchievementsPage = () => {
   ];
 
   return (
-    <div className="h-[100vh] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-40 p-20  min-h-screen flex flex-col items-center justify-center">
+    <div className="h-[100vh] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-32 p-20  min-h-screen flex flex-col items-center justify-center">
       <h2 className="text-3xl md:text-4xl font-bold hover:text-[#FF4D4D] text-center mb-2">ACHIEVEMENTS</h2>
       <hr className="border-red-500 w-44 mx-auto mb-10" />
 

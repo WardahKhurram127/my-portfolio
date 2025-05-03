@@ -10,7 +10,7 @@ import AchievemetsPage from '../src/pages/AchievementsPage';
 import ProjectsPage from '../src/pages/ProjectsPage';
 import SkillsPage from '../src/pages/SkillsPage';
 import ContactPage from '../src/pages/ContactPage';
-
+import Footer from './components/Footer';
 function App() {
   const [count, setCount] = useState(0);
 
@@ -28,6 +28,8 @@ function App() {
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }

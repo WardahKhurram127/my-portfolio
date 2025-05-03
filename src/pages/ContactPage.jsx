@@ -72,7 +72,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-[100vh] min-w-[100%]  bg-gray-900 text-white py-16 px-4 pt-40 2xl:ml-40">
+    <div className="min-h-[100vh] min-w-[100%]  bg-gray-900 text-white py-16 px-4 pt-40 2xl:ml-32">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

@@ -60,7 +60,7 @@ const SkillsPage = () => {
   };
 
   return (
-    <div className="min-h-[100vh] w-[100%] 2xl:ml-40  bg-gray-900 text-white pt-48  px-4 ">
+    <div className="min-h-[100vh] w-[100%] 2xl:ml-32  bg-gray-900 text-white pt-48  px-4 ">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
