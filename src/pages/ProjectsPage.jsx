@@ -23,9 +23,9 @@ const ProjectsPage = () => {
   ];
 
   return (
-    <div className="h-[100vh] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-40 p-20  min-h-screen flex flex-col items-center justify-center">
+    <div className="h-[100%] w-[100%] bg-gray-900 text-white py-12 px-4 md:px-12 2xl:ml-40   min-h-screen flex flex-col items-center justify-center">
 
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 group relative inline-block">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 pt-20 group relative inline-block">
         <span className="relative hover:text-[#FF4D4D] ">
           PROJECTS
           <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 "></span>

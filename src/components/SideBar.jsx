@@ -6,22 +6,22 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import WebIcon from '@mui/icons-material/Web';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import WebIcon from "@mui/icons-material/Web";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CodeIcon from '@mui/icons-material/Code';
+import CodeIcon from "@mui/icons-material/Code";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
-import SchoolIcon from '@mui/icons-material/School';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SchoolIcon from "@mui/icons-material/School";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Link } from "react-router-dom";
 
 import { useState } from "react";
@@ -102,7 +102,7 @@ function Sidebar(props) {
         manualProducts: true,
         categories: false,
       });
-    } 
+    }
   };
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -122,7 +122,7 @@ function Sidebar(props) {
   const drawer = (
     <div className="bg-[#111111] h-[100vh]">
       <Toolbar />
-      <Divider sx={{marginTop:"10px"}} />
+      <Divider sx={{ marginTop: "10px" }} />
       <List
         onClick={() => {
           handleDisplay("home");
@@ -130,8 +130,8 @@ function Sidebar(props) {
       >
         <Link to="/">
           <ListItem key={"0"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <HomeIcon />
               </ListItemIcon>
@@ -148,8 +148,8 @@ function Sidebar(props) {
       >
         <Link to="/education">
           <ListItem key={"3"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <SchoolIcon />
               </ListItemIcon>
@@ -165,8 +165,8 @@ function Sidebar(props) {
       >
         <Link to="/achievements">
           <ListItem key={"1"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <EmojiEventsIcon />
               </ListItemIcon>
@@ -182,8 +182,8 @@ function Sidebar(props) {
       >
         <Link to="/projects">
           <ListItem key={"2"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <WebIcon />
               </ListItemIcon>
@@ -199,10 +199,10 @@ function Sidebar(props) {
           }}
         >
           <ListItem key={"4"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                <CodeIcon/>
+                <CodeIcon />
               </ListItemIcon>
 
               <ListItemText primary={"Skills"} />
@@ -217,8 +217,8 @@ function Sidebar(props) {
           }}
         >
           <ListItem key={"5"} disablePadding>
-            <ListItemButton sx={{color:"white"}}>
-              <ListItemIcon sx={{color:"white"}}>
+            <ListItemButton sx={{ color: "white" }}>
+              <ListItemIcon sx={{ color: "white" }}>
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
                 <AccountCircleIcon />
               </ListItemIcon>
@@ -228,7 +228,6 @@ function Sidebar(props) {
           </ListItem>
         </List>
       </Link>
-      
     </div>
   );
 
@@ -247,7 +246,7 @@ function Sidebar(props) {
           zIndex: (theme) => theme.zIndex.drawer + 1, // Ensures AppBar is above the drawer
         }}
       >
-        <Toolbar sx={{backgroundColor:"#111111"}}>
+        <Toolbar sx={{ backgroundColor: "#111111" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -257,13 +256,38 @@ function Sidebar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{display:"flex", justifyContent:"space-between", width:100+"%", paddingX:"40px", paddingY:"20px"}}>
-          <Typography sx={{color:"#FF4D4D"}} variant="h6" noWrap component="div">
-            Wardah Khurram
-          </Typography>
-          <Link to="/contact">
-          <AccountCircleIcon sx={{fontSize:"35px", cursor:"pointer"}}/>
-          </Link>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: 100 + "%",
+              paddingX: "40px",
+              paddingY: "20px",
+            }}
+          >
+            <Typography
+              sx={{ color: "#FF4D4D" }}
+              variant="h6"
+              noWrap
+              component="div"
+            >
+              Wardah Khurram
+            </Typography>
+            <Box
+              sx={{
+                display: {
+                  xs: "none", // hide on extra-small screens
+                  sm: "none", // hide on small screens
+                  md: "block", // show on medium and up
+                },
+              }}
+            >
+              <Link to="/contact">
+                <AccountCircleIcon
+                  sx={{ fontSize: "35px", cursor: "pointer" }}
+                />
+              </Link>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
@@ -311,8 +335,6 @@ function Sidebar(props) {
           {drawer}
         </Drawer>
       </Box>
-
-      
     </Box>
   );
 }
