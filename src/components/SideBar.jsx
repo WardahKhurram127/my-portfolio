@@ -257,7 +257,7 @@ function Sidebar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{display:"flex", justifyContent:"space-between", width:100+"%", padding:"20px"}}>
+          <Box sx={{display:"flex", justifyContent:"space-between", width:100+"%", paddingX:"40px", paddingY:"20px"}}>
           <Typography sx={{color:"#FF4D4D"}} variant="h6" noWrap component="div">
             Wardah Khurram
           </Typography>
