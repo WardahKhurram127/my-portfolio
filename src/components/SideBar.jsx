@@ -1,192 +1,349 @@
-import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import * as React from "react";
+import PropTypes from "prop-types";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ContactsIcon from "@mui/icons-material/Contacts";
+
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import { Link } from "react-router-dom";
+
+import { useState } from "react";
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
-          marginLeft: 0,
-        },
-      },
-    ],
-  }),
-);
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      },
-    },
-  ],
-}));
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
-}));
-
-export default function PersistentDrawerLeft() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
+function Sidebar(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+  const [display, setDisplay] = useState({
+    home: true,
+    about: false,
+    contact: false,
+    settings: false,
+    products: false,
+    manualProducts: false,
+    categories: false,
+  });
+  const handleDisplay = (text) => {
+    if (text == "home") {
+      setDisplay({
+        home: true,
+        about: false,
+        contact: false,
+        settings: false,
+        products: false,
+        manualProducts: false,
+        categories: false,
+      });
+    } else if ((text = "about")) {
+      setDisplay({
+        home: false,
+        about: true,
+        contact: false,
+        settings: false,
+        products: false,
+        manualProducts: false,
+        categories: false,
+      });
+    } else if ((text = "contact")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: true,
+        settings: false,
+        products: false,
+        manualProducts: false,
+        categories: false,
+      });
+    } else if ((text = "settings")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: false,
+        settings: true,
+        products: false,
+        manualProducts: false,
+        categories: false,
+      });
+    } else if ((text = "products")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: false,
+        settings: false,
+        products: true,
+        manualProducts: false,
+        categories: false,
+      });
+    } else if ((text = "manualProducts")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: false,
+        settings: false,
+        products: false,
+        manualProducts: true,
+        categories: false,
+      });
+    } else if ((text = "categories")) {
+      setDisplay({
+        home: false,
+        about: false,
+        contact: false,
+        settings: false,
+        products: false,
+        manualProducts: false,
+        categories: true,
+      });
+    }
   };
-
   const handleDrawerClose = () => {
-    setOpen(false);
+    setIsClosing(true);
+    setMobileOpen(false);
   };
+
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
+
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
+  };
+
+  const drawer = (
+    <div>
+      <Toolbar />
+      <Divider />
+      <List
+        onClick={() => {
+          handleDisplay("home");
+        }}
+      >
+        <Link to="/">
+          <ListItem key={"0"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Home"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      {/* <Divider /> */}
+      <List
+        onClick={() => {
+          handleDisplay("about");
+        }}
+      >
+        <Link to="/About">
+          <ListItem key={"3"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <InfoIcon />
+              </ListItemIcon>
+              <ListItemText primary={"About"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      <List
+        onClick={() => {
+          handleDisplay("contact");
+        }}
+      >
+        <Link to="/Contact">
+          <ListItem key={"1"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ContactsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Contact"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      <List
+        onClick={() => {
+          handleDisplay("settings");
+        }}
+      >
+        <Link to="/Settings">
+          <ListItem key={"2"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Settings"} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      </List>
+      <Link to="/Products">
+        <List
+          onClick={() => {
+            handleDisplay("products");
+          }}
+        >
+          <ListItem key={"4"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"Products"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
+      <Link to="/ManualProducts">
+        <List
+          onClick={() => {
+            handleDisplay("manualProducts");
+          }}
+        >
+          <ListItem key={"5"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"ManualProducts"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
+      <Link to="/Categories">
+        <List
+          onClick={() => {
+            handleDisplay("categories");
+          }}
+        >
+          <ListItem key={"6"} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                <ShoppingCartIcon />
+              </ListItemIcon>
+
+              <ListItemText primary={"Categories"} />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Link>
+    </div>
+  );
+
+  // Remove this const when copying and pasting into your project.
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', backgroundColor:"black" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
+    <Box sx={{ display: "flex" }}>
+      {/* <CssBaseline /> */}
+      <AppBar
+        position="fixed"
+        sx={{
+          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          // ml: { sm: `${drawerWidth}px` },
+          zIndex: (theme) => theme.zIndex.drawer + 1, // Ensures AppBar is above the drawer
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
             edge="start"
-            sx={[
-              {
-                mr: 2,
-              },
-              open && { display: 'none' },
-            ]}
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { xl: "none" } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            My Portfolio
+            Dashboard
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
+
+      <Box
+        component="nav"
+        sx={{ width: { lg: drawerWidth } }}
+        aria-label="mailbox folders"
       >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader />
-        {/* <Typography sx={{ marginBottom: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-          enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-          imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-          Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-          Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-          nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-          feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-          consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-          sapien faucibus et molestie ac.
-        </Typography>
-        <Typography sx={{ marginBottom: 2 }}>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-          eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-          neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-          tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-          sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-          tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-          gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-          et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-          tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography> */}
-      </Main>
+        {/* flexShrink: { lg: 0 } */}
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onTransitionEnd={handleDrawerTransitionEnd}
+          onClose={handleDrawerClose}
+          sx={{
+            display: { xl: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+          slotProps={{
+            root: {
+              keepMounted: true, // Better open performance on mobile.
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: "none", xl: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+
+      
     </Box>
   );
 }
+
+// ResponsiveDrawer.propTypes = {
+//   /**
+//    * Injected by the documentation to work in an iframe.
+//    * Remove this when copying and pasting into your project.
+//    */
+//   window: PropTypes.func,
+// };
+
+export default Sidebar;
