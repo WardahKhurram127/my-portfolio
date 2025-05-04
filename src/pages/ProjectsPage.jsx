@@ -61,9 +61,7 @@ const ProjectsPage = () => {
               <p className="text-gray-300">{project.description}</p>
               
 
-              {/* <button className="mt-4 px-4 py-2 text-sm bg-red-500 hover:bg-red-400 cursor-pointer text-white rounded-lg transition-colors duration-300 opacity-0 group-hover:opacity-100">
-                View Project
-              </button> */}
+              
             </div>
           </div>
         ))}
