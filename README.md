@@ -37,9 +37,35 @@ The portfolio is designed with a **dark-themed layout** and built using **modern
 ### 2. Education
 - A structured table showing academic achievements and qualifications.
 
+![image](https://github.com/user-attachments/assets/f06fb9cd-8edc-45e0-b60e-b6141f57d502)
+
+
 ### 3. Projects
 - Displays notable projects with:
   - Name
   - Tech Stack
   - Description
   - Associated image
+
+![image](https://github.com/user-attachments/assets/d796ea69-6d51-4fc5-8fab-e4ecefb31517)
+
+### 4. 🏆 Achievements
+- Showcases competition wins and notable accomplishments with fade-in animations.
+
+![image](https://github.com/user-attachments/assets/99dfaa3d-ac18-4dbb-afd6-89f6053eceb4)
+
+
+### 5. 🧠 Skills
+- Visual progress bars for each skill (e.g., HTML, CSS, JavaScript, React).
+
+![image](https://github.com/user-attachments/assets/69bf138c-3e4f-498f-8f29-fa6a5ab36315)
+
+
+### 6. 📬 Contact
+- Contact form with fields for Name, Email, and Message.
+- Fully functional (optional: connect with a backend/email service).
+
+![image](https://github.com/user-attachments/assets/1906db66-3193-4ac2-8bdf-bb305fb349cb)
+
+## 🔗 Live Demo
+https://my-portfolio-delta-one-17.vercel.app/
